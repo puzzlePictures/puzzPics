@@ -1,31 +1,45 @@
 extends GridContainer
 
-var cells = []  # 2D array to store ColorRect nodes
-var grid_state = []  # 2D array to store grid state (0: empty, 1: filled)
+# 2D array to store Cell node references
+var cells: Array[Array] = [] 
+# 2D array to store grid state (0: empty, 1: filled, 2: marked)
+var grid_state: Array[PackedByteArray] = [] 
+
+var puzzle_data: Dictionary = {}
+var solution: Array[PackedByteArray] = []
+var cols: int = 10
+var rows: int = 10
 
 const CELL_SIZE = 60
-const COLS = 10
-const ROWS = 10
 
 func _ready() -> void:
-	columns = COLS
+	puzzle_data = Puzzles.data[Puzzles.curr_puzzle_idx]
+	solution.assign(puzzle_data["solution"])
+	cols = puzzle_data['columns']
+	rows = puzzle_data['rows']
+	
+	#Puzzles.count_solution_pixels(solution)
+	
+	columns = cols
 	position -= size / 2
 	
-	# Initialize grid_state with "empty" states
-	for y in range(ROWS):
-		grid_state.append([])
-		for x in range(COLS):
+	# Populate grid_state with 0s
+	for y in range(rows):
+		grid_state.append(PackedByteArray())
+		for x in range(cols):
 			grid_state[y].append(0)
 	
-	# Instantiate cells, set them to emptym and populate cells array
-	for y in range(ROWS):
+	# Populate cells with nodes
+	for y in range(rows):
 		cells.append([])
-		for x in range(COLS):
-			var cell = Button.new()
+		for x in range(cols):
+			var cell := Button.new()
+			
+			# Customize node
 			cell.custom_minimum_size = Vector2(CELL_SIZE, CELL_SIZE) 
 			cell.pressed.connect(_on_cell_clicked.bind(x, y))
-			#cell.mouse_entered.connect(_on_cell_clicked.bind(x + (y * COLS)))
-			cell.icon = preload("res://cell_states/empty.svg")
+			#cell.icon = preload("res://cell_states/empty.svg")
+			cell.icon = preload("res://cell_states/empty.svg") if puzzle_data['solution'][y][x] == 0 else preload("res://cell_states/filled.svg")
 			cell.expand_icon = true
 			
 			add_child(cell)
@@ -47,16 +61,14 @@ func _on_cell_clicked(col: int, row: int) -> void:
 
 #func _on_Reset_pressed(): 
 	## Reset grid state
-	#for y in range(ROWS):
-		#for x in range(COLS):
+	#for y in range(rows):
+		#for x in range(cols):
 			#grid_state[y][x] = 0
 #
 	## Reset cell colors
-	#for y in range(ROWS):
-		#for x in range(COLS):
+	#for y in range(rows):
+		#for x in range(cols):
 			#cells[y][x].icon = preload("res://cell_states/empty.svg") 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-@warning_ignore("unused_parameter")
-func _process(delta: float) -> void:
-	pass
+func _process(delta: float) -> void: pass
