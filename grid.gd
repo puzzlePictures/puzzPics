@@ -31,7 +31,7 @@ func _ready() -> void:
 	
 	# Populate cells with nodes
 	for y in range(rows):
-		cells.append([])
+		cells.append(Array())
 		for x in range(cols):
 			var cell := Button.new()
 			
