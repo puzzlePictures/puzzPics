@@ -10,7 +10,7 @@ var solution: Array[PackedByteArray] = []
 var cols: int = 10
 var rows: int = 10
 
-const CELL_SIZE = 60
+const CELL_SIZE = 50
 
 func _ready() -> void:
 	puzzle_data = Puzzles.data[Puzzles.curr_puzzle_idx]
