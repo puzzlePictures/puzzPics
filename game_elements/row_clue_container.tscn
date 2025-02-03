@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://plu73wdvtlt3"]
 
-[ext_resource type="Script" path="res://row_clue_container.gd" id="1_rteex"]
+[ext_resource type="Script" path="res://game_elements/row_clue_container.gd" id="1_rteex"]
 
 [node name="RowClueContainer" type="GridContainer"]
 anchors_preset = 8

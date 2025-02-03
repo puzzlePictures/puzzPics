@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cnodwe4m7vwlu"]
 
-[ext_resource type="Script" path="res://column_clue_container.gd" id="1_kpkas"]
+[ext_resource type="Script" path="res://game_elements/column_clue_container.gd" id="1_kpkas"]
 
 [node name="ColumnClueContainer" type="GridContainer"]
 anchors_preset = 8

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cdiat0vyml4rk"]
 
-[ext_resource type="Script" path="res://grid.gd" id="1_m0sxx"]
+[ext_resource type="Script" path="res://game_elements/grid.gd" id="1_m0sxx"]
 
 [node name="Grid" type="GridContainer"]
 anchors_preset = 8
