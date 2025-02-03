@@ -21,9 +21,11 @@ func _ready() -> void:
 		clue_set.push_font_size(TEXT_SIZE * 2 / 3)
 		clue_set.push_bold()
 		clue_set.push_color(Color.CRIMSON)
-		# 
+		
+		# Create the string by iterating over the array and adding spaces where needed
 		var clue_array: Array = clues[row]
 		var clue_str: String = clue_array.reduce(func (acc, clue) -> String: return acc + ' ' + str(clue).lpad(max_clue_len, '  '), '')
+		# Align the text to the right
 		clue_set.append_text("[right]" + clue_str + "[/right]")
 		
 		add_child(clue_set)
