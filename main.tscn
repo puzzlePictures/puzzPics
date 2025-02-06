@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://qsn5ujtm2nss"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_nppdh"]
+[ext_resource type="PackedScene" uid="uid://cdiat0vyml4rk" path="res://game_elements/grid.tscn" id="1_vievi"]
+[ext_resource type="PackedScene" uid="uid://cnodwe4m7vwlu" path="res://game_elements/column_clue_container.tscn" id="2_g5i62"]
+[ext_resource type="PackedScene" uid="uid://plu73wdvtlt3" path="res://game_elements/row_clue_container.tscn" id="3_n5fao"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_nppdh")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridBackLight" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Grid" parent="." instance=ExtResource("1_vievi")]
+
+[node name="ColumnClueContainer" parent="." instance=ExtResource("2_g5i62")]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="RowClueContainer" parent="." instance=ExtResource("3_n5fao")]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[connection signal="puzzle_solved" from="Grid" to="." method="_puzzle_solved"]

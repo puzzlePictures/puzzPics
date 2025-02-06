@@ -24,7 +24,7 @@ func _ready() -> void:
 		# push_[style]() methods add styling to BBCode text in label
 		clue_set.push_font_size(TEXT_SIZE * 2 / 3)
 		clue_set.push_bold()
-		clue_set.push_color(Color.CADET_BLUE)
+		clue_set.push_color(Color.BLUE)
 		clue_set.fit_content = true
 		clue_set.text_direction = Control.TEXT_DIRECTION_RTL
 		
