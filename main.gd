@@ -28,6 +28,8 @@ func _puzzle_solved() -> void:
 	for row in range($Grid.rows):
 		for col in range($Grid.cols):
 			$Grid.cells[row][col].disabled = true
+	
+	$GameWinModal.show()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void: pass

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://qsn5ujtm2nss"]
+[gd_scene load_steps=6 format=3 uid="uid://qsn5ujtm2nss"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_nppdh"]
 [ext_resource type="PackedScene" uid="uid://cdiat0vyml4rk" path="res://game_elements/grid.tscn" id="1_vievi"]
 [ext_resource type="PackedScene" uid="uid://cnodwe4m7vwlu" path="res://game_elements/column_clue_container.tscn" id="2_g5i62"]
 [ext_resource type="PackedScene" uid="uid://plu73wdvtlt3" path="res://game_elements/row_clue_container.tscn" id="3_n5fao"]
+[ext_resource type="PackedScene" uid="uid://dsygtot356dpt" path="res://modals/game_win_modal.tscn" id="5_cmadd"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_nppdh")
@@ -37,5 +38,8 @@ offset_left = 0.0
 offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
+
+[node name="GameWinModal" parent="." instance=ExtResource("5_cmadd")]
+visible = false
 
 [connection signal="puzzle_solved" from="Grid" to="." method="_puzzle_solved"]

@@ -21,7 +21,6 @@ func _ready() -> void:
 				data.append(load_puzzle(file_path))
 	else:
 		print("An error occurred when trying to access the path.")
-	pass
 
 func load_puzzle(file_path: String) -> Dictionary:
 	var puzzle_data_string = FileAccess.get_file_as_string(file_path)
