@@ -14,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="InnerColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -44,7 +44,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+[node name="WinText" type="RichTextLabel" parent="VBoxContainer"]
 clip_contents = false
 custom_minimum_size = Vector2(240, 50)
 layout_mode = 2
@@ -66,7 +66,7 @@ grow_vertical = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Button/MarginContainer"]
+[node name="ButtonText" type="RichTextLabel" parent="VBoxContainer/Button/MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true

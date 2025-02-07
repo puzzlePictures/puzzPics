@@ -2,6 +2,8 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$GameWinModal.hide()
+	
 	var grid_size_vector = $Grid.get_minimum_size()
 	
 	# Use this for scale calcs
