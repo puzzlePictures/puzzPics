@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dsygtot356dpt"]
+[gd_scene load_steps=2 format=3 uid="uid://dsygtot356dpt"]
+
+[ext_resource type="Script" path="res://modals/game_win_modal_button.gd" id="1_li68g"]
 
 [node name="GameWinModal" type="ColorRect"]
 anchors_preset = 8
@@ -27,7 +29,7 @@ offset_right = 190.0
 offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.0588235, 0.0588235, 0.0588235, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -55,19 +57,8 @@ text = "[wave amp=50.0 freq=5.0 connected=1][rainbow freq=.25 sat=.8 val=.8]Puzz
 [node name="Button" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(240, 50)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.996078, 0.54902, 0, 1)
+text = "Return to Puzzle Select"
+script = ExtResource("1_li68g")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Button"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-
-[node name="ButtonText" type="RichTextLabel" parent="VBoxContainer/Button/MarginContainer"]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0]Return to Puzzle Select[/pulse]"
+[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer/Button" method="_on_pressed"]
