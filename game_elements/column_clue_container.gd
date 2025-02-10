@@ -33,7 +33,7 @@ func _ready() -> void:
 			# This addresses the variance in the number of clues in a column
 			# Columns with a small amount of clues will get space filled in to be equivalent to the largest clue set
 			idx = len(clue_array) - idx
-			#print(idx)
+			
 			clue_set.append_text(str(clue_array[idx]) if idx >= 0 else '')
 			clue_set.newline()
 		

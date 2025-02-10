@@ -14,6 +14,8 @@ script = ExtResource("1_nppdh")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -43,7 +45,7 @@ offset_bottom = 0.0
 [node name="GameWinModal" parent="." instance=ExtResource("5_cmadd")]
 visible = false
 
-[node name="Button" type="Button" parent="."]
+[node name="BackButton" type="Button" parent="."]
 offset_left = 30.0
 offset_top = 30.0
 offset_right = 201.0
@@ -55,12 +57,14 @@ icon_alignment = 1
 mode = 1
 title = "Return To Level Select?"
 position = Vector2i(30, 200)
-size = Vector2i(296, 100)
+size = Vector2i(600, 200)
 keep_title_visible = false
+content_scale_stretch = 1
+content_scale_factor = 2.0
 ok_button_text = "Return To Level Select"
-dialog_text = "(You will lose progres on this puzzle)"
+dialog_text = "(You will lose progress on this puzzle)"
 dialog_hide_on_ok = false
 
 [connection signal="puzzle_solved" from="Grid" to="." method="_puzzle_solved"]
-[connection signal="pressed" from="Button" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="confirmed" from="BackConfirmationModal" to="." method="_on_back_dialog_confirmed"]

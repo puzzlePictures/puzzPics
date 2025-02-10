@@ -26,12 +26,16 @@ func _ready() -> void:
 	
 	$RowClueContainer.position.y += 5
 
-func _puzzle_solved() -> void:
+func _puzzle_solved(funcToDisconnect: Callable) -> void:
 	for row in range($Grid.rows):
 		for col in range($Grid.cols):
 			$Grid.cells[row][col].disabled = true
+			
+			if $Grid.cells[row][col].button_down.is_connected(funcToDisconnect):
+				$Grid.cells[row][col].button_down.disconnect(funcToDisconnect)
 	
 	$GameWinModal.show()
+	$BackButton.disabled = true
 
 func _on_back_button_pressed() -> void: $BackConfirmationModal.show()
 

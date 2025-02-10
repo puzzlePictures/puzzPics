@@ -1,6 +1,6 @@
 extends GridContainer
 
-signal puzzle_solved
+signal puzzle_solved(funcToDisconnect)
 
 # 2D array to store Cell node references
 var cells: Array[Array] = [] 
@@ -24,8 +24,6 @@ func _ready() -> void:
 	cols = puzzle_data['columns']
 	rows = puzzle_data['rows']
 	
-	#Puzzles.count_solution_pixels(solution)
-	
 	columns = cols
 	position -= size / 2
 	
@@ -43,9 +41,15 @@ func _ready() -> void:
 			
 			# Customize node
 			cell.custom_minimum_size = Vector2(CELL_SIZE, CELL_SIZE) 
-			cell.pressed.connect(_on_cell_clicked.bind(x, y))
+			cell.button_down.connect(_on_cell_clicked.bind(x, y))
+			cell.mouse_entered.connect(_on_cell_entered.bind(cell))
+			#cell.focus_entered.connect(_on_cell_entered.bind(cell))
 			cell.icon = preload("res://assets/cell_states/empty.svg")
-			#cell.icon = preload("res://assets/cell_states/empty.svg") if puzzle_data['solution'][y][x] == 0 else preload("res://assets/cell_states/filled.svg")
+			
+			#cell.icon = preload("res://assets/cell_states/empty.svg") \
+				#if puzzle_data['solution'][y][x] == 0 \
+				#else preload("res://assets/cell_states/filled.svg")
+				
 			cell.expand_icon = true
 			
 			add_child(cell)
@@ -55,7 +59,7 @@ func _ready() -> void:
 
 func _on_cell_clicked(col: int, row: int) -> void:
 	# Toggle cell state
-	if (Input.is_action_pressed("mark_cell") or Input.is_action_pressed("mouse_mark_cell")) and grid_state[row][col] == 0:
+	if grid_state[row][col] == 0 and Input.is_action_pressed("mark_cell"):
 		grid_state[row][col] = 2
 		cells[row][col].icon = preload("res://assets/cell_states/marked.svg")
 	elif grid_state[row][col] == 0:
@@ -75,6 +79,10 @@ func _on_cell_clicked(col: int, row: int) -> void:
 	if filled_count == solution_pixel_count:
 		check_win_state()
 
+func _on_cell_entered(cell: Button) -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		cell.button_down.emit()
+
 func check_win_state() -> void:
 	for row in range(rows):
 		for col in range(cols):
@@ -84,7 +92,8 @@ func check_win_state() -> void:
 				return
 	
 	# If the loop completes without exiting early
-	puzzle_solved.emit()
+	puzzle_solved.emit(cells[0][0].button_down.get_connections()[0]["callable"])
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void: pass

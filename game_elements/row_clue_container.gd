@@ -12,7 +12,8 @@ func _ready() -> void:
 	clues.assign(puzzle_data["row_clues"])
 	row_count = puzzle_data['rows']
 	
-	var max_clue_len: int = clues.map(func (clue_set: Array[int]) -> int: return len(str(clue_set.max()))).max()
+	var max_clue_len: int = clues.map( \
+		func (clue_set: Array[int]) -> int: return len(str(clue_set.max()))).max()
 	
 	for row in row_count:
 		var clue_set = RichTextLabel.new()
@@ -24,7 +25,8 @@ func _ready() -> void:
 		
 		# Create the string by iterating over the array and adding spaces where needed
 		var clue_array: Array = clues[row]
-		var clue_str: String = clue_array.reduce(func (acc, clue) -> String: return acc + ' ' + str(clue).lpad(max_clue_len, '  '), '')
+		var clue_str: String = clue_array.reduce( \
+			func (acc, clue) -> String: return acc + ' ' + str(clue).lpad(max_clue_len, '  '), '')
 		# Align the text to the right
 		clue_set.append_text("[right]" + clue_str + "[/right]")
 		
