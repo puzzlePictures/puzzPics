@@ -44,8 +44,8 @@ func _ready() -> void:
 			# Customize node
 			cell.custom_minimum_size = Vector2(CELL_SIZE, CELL_SIZE) 
 			cell.pressed.connect(_on_cell_clicked.bind(x, y))
-			cell.icon = preload("res://cell_states/empty.svg")
-			#cell.icon = preload("res://cell_states/empty.svg") if puzzle_data['solution'][y][x] == 0 else preload("res://cell_states/filled.svg")
+			cell.icon = preload("res://assets/cell_states/empty.svg")
+			#cell.icon = preload("res://assets/cell_states/empty.svg") if puzzle_data['solution'][y][x] == 0 else preload("res://assets/cell_states/filled.svg")
 			cell.expand_icon = true
 			
 			add_child(cell)
@@ -57,19 +57,19 @@ func _on_cell_clicked(col: int, row: int) -> void:
 	# Toggle cell state
 	if (Input.is_action_pressed("mark_cell") or Input.is_action_pressed("mouse_mark_cell")) and grid_state[row][col] == 0:
 		grid_state[row][col] = 2
-		cells[row][col].icon = preload("res://cell_states/marked.svg")
+		cells[row][col].icon = preload("res://assets/cell_states/marked.svg")
 	elif grid_state[row][col] == 0:
 		# Update count
 		filled_count += 1
 		
 		grid_state[row][col] = 1
-		cells[row][col].icon = preload("res://cell_states/filled.svg")
+		cells[row][col].icon = preload("res://assets/cell_states/filled.svg")
 	else:
 		# Update count if the cell was filled before
 		if grid_state[row][col] == 1: filled_count -= 1
 		
 		grid_state[row][col] = 0
-		cells[row][col].icon = preload("res://cell_states/empty.svg")
+		cells[row][col].icon = preload("res://assets/cell_states/empty.svg")
 	
 	# Check for win state
 	if filled_count == solution_pixel_count:

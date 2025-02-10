@@ -33,5 +33,9 @@ func _puzzle_solved() -> void:
 	
 	$GameWinModal.show()
 
+func _on_back_button_pressed() -> void: $BackConfirmationModal.show()
+
+func _on_back_dialog_confirmed() -> void: get_tree().change_scene_to_file("res://level_select.tscn")
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void: pass

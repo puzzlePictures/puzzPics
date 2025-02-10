@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://qsn5ujtm2nss"]
+[gd_scene load_steps=7 format=3 uid="uid://qsn5ujtm2nss"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_nppdh"]
 [ext_resource type="PackedScene" uid="uid://cdiat0vyml4rk" path="res://game_elements/grid.tscn" id="1_vievi"]
 [ext_resource type="PackedScene" uid="uid://cnodwe4m7vwlu" path="res://game_elements/column_clue_container.tscn" id="2_g5i62"]
 [ext_resource type="PackedScene" uid="uid://plu73wdvtlt3" path="res://game_elements/row_clue_container.tscn" id="3_n5fao"]
 [ext_resource type="PackedScene" uid="uid://dsygtot356dpt" path="res://modals/game_win_modal.tscn" id="5_cmadd"]
+[ext_resource type="Texture2D" uid="uid://bxoq8s7m3dq65" path="res://assets/button_icons/back-arrow.svg" id="5_uwwyq"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_nppdh")
@@ -42,4 +43,24 @@ offset_bottom = 0.0
 [node name="GameWinModal" parent="." instance=ExtResource("5_cmadd")]
 visible = false
 
+[node name="Button" type="Button" parent="."]
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 201.0
+offset_bottom = 138.0
+icon = ExtResource("5_uwwyq")
+icon_alignment = 1
+
+[node name="BackConfirmationModal" type="ConfirmationDialog" parent="."]
+mode = 1
+title = "Return To Level Select?"
+position = Vector2i(30, 200)
+size = Vector2i(296, 100)
+keep_title_visible = false
+ok_button_text = "Return To Level Select"
+dialog_text = "(You will lose progres on this puzzle)"
+dialog_hide_on_ok = false
+
 [connection signal="puzzle_solved" from="Grid" to="." method="_puzzle_solved"]
+[connection signal="pressed" from="Button" to="." method="_on_back_button_pressed"]
+[connection signal="confirmed" from="BackConfirmationModal" to="." method="_on_back_dialog_confirmed"]
