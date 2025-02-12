@@ -6,10 +6,10 @@ func _ready() -> void:
 	
 	var grid_size_vector = $Grid.get_minimum_size()
 	
-	# Use this for scale calcs
-	print(grid_size_vector)
-	print($ColumnClueContainer.get_minimum_size())
-	print($RowClueContainer.get_minimum_size())
+	## Use this for scale calcs
+	#print(grid_size_vector)
+	#print($ColumnClueContainer.get_minimum_size())
+	#print($RowClueContainer.get_minimum_size())
 	
 	$BackgroundColor.color = Color.CADET_BLUE
 	$GridBackLight.color = Color.DIM_GRAY
@@ -40,6 +40,8 @@ func _puzzle_solved(funcToDisconnect: Callable) -> void:
 func _on_back_button_pressed() -> void: $BackConfirmationModal.show()
 
 func _on_back_dialog_confirmed() -> void: get_tree().change_scene_to_file("res://level_select.tscn")
+
+func _on_help_button_pressed() -> void: $HelpModal.show()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void: pass

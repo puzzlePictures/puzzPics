@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cluwvun4tqipo"]
+[gd_scene load_steps=4 format=3 uid="uid://cluwvun4tqipo"]
 
 [ext_resource type="Script" path="res://level_select.gd" id="1_5sbe4"]
+[ext_resource type="Texture2D" uid="uid://b8uyack304k07" path="res://assets/button_icons/question-mark.svg" id="2_8r4vq"]
+[ext_resource type="PackedScene" uid="uid://bwnpqytcwxrmu" path="res://modals/help_modal.tscn" id="3_jqsgm"]
 
 [node name="LevelSelect" type="Node"]
 script = ExtResource("1_5sbe4")
@@ -26,3 +28,20 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 80
+
+[node name="HelpButton" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -150.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = 150.0
+grow_horizontal = 0
+icon = ExtResource("2_8r4vq")
+icon_alignment = 1
+
+[node name="HelpModal" parent="." instance=ExtResource("3_jqsgm")]
+visible = false
+
+[connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]

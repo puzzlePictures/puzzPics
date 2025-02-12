@@ -17,7 +17,6 @@ func _ready() -> void:
 	# Find the longest set of clues; allows for "align-end" formatting later
 	var max_clue_count: int = clues.map(func (clue_set) -> int: return len(clue_set)).max()
 	
-	
 	for col in col_count:
 		var clue_set = RichTextLabel.new()
 		clue_set.custom_minimum_size = Vector2(TEXT_SIZE, TEXT_SIZE)

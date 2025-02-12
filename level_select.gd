@@ -25,3 +25,5 @@ func _on_level_select_clicked(puzzle_idx: int) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void: pass
+
+func _on_help_button_pressed() -> void: $HelpModal.show()

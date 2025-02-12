@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://qsn5ujtm2nss"]
+[gd_scene load_steps=9 format=3 uid="uid://qsn5ujtm2nss"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_nppdh"]
 [ext_resource type="PackedScene" uid="uid://cdiat0vyml4rk" path="res://game_elements/grid.tscn" id="1_vievi"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://plu73wdvtlt3" path="res://game_elements/row_clue_container.tscn" id="3_n5fao"]
 [ext_resource type="PackedScene" uid="uid://dsygtot356dpt" path="res://modals/game_win_modal.tscn" id="5_cmadd"]
 [ext_resource type="Texture2D" uid="uid://bxoq8s7m3dq65" path="res://assets/button_icons/back-arrow.svg" id="5_uwwyq"]
+[ext_resource type="Texture2D" uid="uid://b8uyack304k07" path="res://assets/button_icons/question-mark.svg" id="7_f5tfd"]
+[ext_resource type="PackedScene" uid="uid://bwnpqytcwxrmu" path="res://modals/help_modal.tscn" id="8_nqkvv"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_nppdh")
@@ -38,9 +40,9 @@ offset_bottom = 0.0
 
 [node name="RowClueContainer" parent="." instance=ExtResource("3_n5fao")]
 offset_left = 0.0
-offset_top = 0.0
+offset_top = 2.0
 offset_right = 0.0
-offset_bottom = 0.0
+offset_bottom = 2.0
 
 [node name="GameWinModal" parent="." instance=ExtResource("5_cmadd")]
 visible = false
@@ -65,6 +67,22 @@ ok_button_text = "Return To Level Select"
 dialog_text = "(You will lose progress on this puzzle)"
 dialog_hide_on_ok = false
 
+[node name="HelpButton" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -150.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = 150.0
+grow_horizontal = 0
+icon = ExtResource("7_f5tfd")
+icon_alignment = 1
+
+[node name="HelpModal" parent="." instance=ExtResource("8_nqkvv")]
+visible = false
+
 [connection signal="puzzle_solved" from="Grid" to="." method="_puzzle_solved"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="confirmed" from="BackConfirmationModal" to="." method="_on_back_dialog_confirmed"]
+[connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]
