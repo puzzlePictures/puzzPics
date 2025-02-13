@@ -1,5 +1,7 @@
 extends Node
 
+var timer_flag = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$GameWinModal.hide()
@@ -24,7 +26,7 @@ func _ready() -> void:
 	#print($ColumnClueContainer.position)
 	#print($RowClueContainer.position)
 	
-	$RowClueContainer.position.y += 5
+	#$RowClueContainer.position.y += 5
 
 func _puzzle_solved(funcToDisconnect: Callable) -> void:
 	for row in range($Grid.rows):
@@ -34,6 +36,7 @@ func _puzzle_solved(funcToDisconnect: Callable) -> void:
 			if $Grid.cells[row][col].button_down.is_connected(funcToDisconnect):
 				$Grid.cells[row][col].button_down.disconnect(funcToDisconnect)
 	
+	$MoveWinModalTimer.start(2)
 	$GameWinModal.show()
 	$BackButton.disabled = true
 
@@ -41,7 +44,16 @@ func _on_back_button_pressed() -> void: $BackConfirmationModal.show()
 
 func _on_back_dialog_confirmed() -> void: get_tree().change_scene_to_file("res://level_select.tscn")
 
-func _on_help_button_pressed() -> void: $HelpModal.show()
+func _on_help_button_pressed() -> void: $HelpModal.visible = not $HelpModal.visible
+
+func _on_timer_timeout() -> void:
+	$GameWinModal/VBoxContainer/Button.show()
+	timer_flag = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void: pass
+func _process(delta: float) -> void: 
+	if timer_flag && $GameWinModal.position.y > 0:
+		$GameWinModal.position.y -= 180 * delta
+		
+		if $GameWinModal.position.y < 0:
+			$GameWinModal.position.y = 0

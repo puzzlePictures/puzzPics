@@ -82,7 +82,11 @@ icon_alignment = 1
 [node name="HelpModal" parent="." instance=ExtResource("8_nqkvv")]
 visible = false
 
+[node name="MoveWinModalTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="puzzle_solved" from="Grid" to="." method="_puzzle_solved"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="confirmed" from="BackConfirmationModal" to="." method="_on_back_dialog_confirmed"]
 [connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]
+[connection signal="timeout" from="MoveWinModalTimer" to="." method="_on_timer_timeout"]

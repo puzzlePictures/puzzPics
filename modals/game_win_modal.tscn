@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dsygtot356dpt"]
 
-[ext_resource type="Script" path="res://modals/game_win_modal_button.gd" id="1_li68g"]
+[ext_resource type="Script" path="res://modals/game_win_modal.gd" id="1_tnstg"]
 
 [node name="GameWinModal" type="ColorRect"]
 anchors_preset = 8
@@ -14,6 +14,7 @@ offset_right = 200.0
 offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_tnstg")
 metadata/_edit_group_ = true
 
 [node name="InnerColorRect" type="ColorRect" parent="."]
@@ -55,10 +56,10 @@ bbcode_enabled = true
 text = "[wave amp=50.0 freq=5.0 connected=1][rainbow freq=.25 sat=.8 val=.8]Puzzle Solved![/rainbow][/wave]"
 
 [node name="Button" type="Button" parent="VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(240, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.996078, 0.54902, 0, 1)
 text = "Return to Puzzle Select"
-script = ExtResource("1_li68g")
 
-[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer/Button" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

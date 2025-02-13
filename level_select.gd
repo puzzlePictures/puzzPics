@@ -23,7 +23,7 @@ func _on_level_select_clicked(puzzle_idx: int) -> void:
 	Puzzles.curr_puzzle_idx = puzzle_idx
 	get_tree().change_scene_to_file("res://main.tscn")
 
+func _on_help_button_pressed() -> void: $HelpModal.visible = not $HelpModal.visible
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void: pass
-
-func _on_help_button_pressed() -> void: $HelpModal.show()
