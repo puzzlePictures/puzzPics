@@ -4,7 +4,7 @@ var puzzle_data: Dictionary = {}
 var clues: Array[PackedByteArray] = []
 var row_count: int = 10
 
-const TEXT_SIZE = 50
+var text_size: float = 50.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,14 +12,17 @@ func _ready() -> void:
 	clues.assign(puzzle_data["row_clues"])
 	row_count = puzzle_data['rows']
 	
+	var col_count = puzzle_data['columns']
+	text_size *= float(col_count) / abs(col_count - 3.5)
+	
 	var max_clue_len: int = clues.map( \
 		func (clue_set: Array[int]) -> int: return len(str(clue_set.max()))).max()
 	
 	for row in row_count:
 		var clue_set = RichTextLabel.new()
-		clue_set.custom_minimum_size = Vector2(TEXT_SIZE * len(clues[row]), TEXT_SIZE)
+		clue_set.custom_minimum_size = Vector2(text_size * len(clues[row]), text_size)
 		# push_[style]() methods add styling to BBCode text in label
-		clue_set.push_font_size(TEXT_SIZE * 2 / 3)
+		clue_set.push_font_size(text_size * 2 / 3)
 		clue_set.push_bold()
 		clue_set.push_color(Color.CRIMSON)
 		

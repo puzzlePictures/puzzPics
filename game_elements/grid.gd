@@ -15,7 +15,7 @@ var cols: int = 10
 var rows: int = 10
 
 # think about making the cell size dependent on the number of columns and rows
-const CELL_SIZE = 50
+var cell_size: float = 50.0
 
 func _ready() -> void:
 	puzzle_data = Puzzles.data[Puzzles.curr_puzzle_idx]
@@ -26,6 +26,8 @@ func _ready() -> void:
 	
 	columns = cols
 	position -= size / 2
+	
+	cell_size *= float(cols) / abs(cols - 3.5)
 	
 	# Populate grid_state with 0s
 	for y in range(rows):
@@ -40,7 +42,7 @@ func _ready() -> void:
 			var cell := Button.new()
 			
 			# Customize node
-			cell.custom_minimum_size = Vector2(CELL_SIZE, CELL_SIZE) 
+			cell.custom_minimum_size = Vector2(cell_size, cell_size)
 			cell.button_down.connect(_on_cell_clicked.bind(x, y))
 			cell.mouse_entered.connect(_on_cell_entered.bind(cell))
 			#cell.focus_entered.connect(_on_cell_entered.bind(cell))
